@@ -1,22 +1,22 @@
-                                   BypassAlt
-                                   =========
+BypassAlt
+=========
 
 
 Requirements
-============
+------------
 RISC OS 3.5 or later.
 26/32 bit compatible.
 
 
 Installation
-============
+------------
 Use the !Boot System merge tool to merge the supplied system with the one
 in this distribution. Or if you prefer, it can be manually installed in
 System:350.Modules.
 
 
 Introduction
-============
+------------
 Usually, under RISC OS, the Alt keys are acted on by the key handler to
 provide useful key combinations such as the copyright symbol (Alt-C) or
 accented characters (eg Alt-[ e).
@@ -45,48 +45,49 @@ not attempt to load the module on those machines. The API is specified below.
 
 
 SWI BypassAlt_Enable (&58680)
-=============================
-  => r0 = 0
-  <= All registers preserved. CVN undefined, V clear.
-     Errors can be returned with V set and R0 => SWI Error block.
+-----------------------------
+    => r0 = 0
+    <= All registers preserved. CZN undefined, V clear.
+       Errors can be returned with V set and R0 => SWI Error block.
 
-  Call to enable Alt key bypassing. Typically this would be called from the
-  wimp window gaining caret event. Multiple calls to BypassAlt_Enable are
-  allowed.
+Call to enable Alt key bypassing. Typically this would be called from the
+wimp window gaining caret event. Multiple calls to BypassAlt_Enable are
+allowed.
 
 
 SWI BypassAlt_Disable (&58681)
-==============================
- => r0 = 0
- <= All registers preserved. CVN undefined, V clear.
-    Errors can be returned with V set and R0 => SWI Error block.
+------------------------------
+    => r0 = 0
+    <= All registers preserved. CZN undefined, V clear.
+       Errors can be returned with V set and R0 => SWI Error block.
 
-  Call to disable Alt key bypassing. Typically this would be called from the
-  wimp window losing caret event. Care needs to be taked when the task exits,
-  the window is closed or the window is destroyed.
-  The Alt bypassing will only be disabled when there has been one disable
-  call for each enable one.
+Call to disable Alt key bypassing. Typically this would be called from the
+wimp window losing caret event. Care needs to be taked when the task exits,
+the window is closed or the window is destroyed.
+The Alt bypassing will only be disabled when there has been one disable
+call for each enable one.
 
 
 Comments and Updates
-====================
+--------------------
 The latest release is on GitHub <https://github.com/effarig/ro-bypassalt>.
 
-Please and send any bug reports, comments, suggestions etc. using GitHub or
-by email to jip22gm@gmail.com.
+Please and send any bug reports, comments, suggestions etc. using GitHub.
 
 
 Changes
-=======
+-------
 0.01 (30-Dec-2005):
   * First version.
 
 1.00 (30-Dec-2021):
   * Removed tabs from source.
-  * Email address and URL  updated.
+  * !ReadMe now markdown.
+  * Fix PSR flag names in !ReadMe.
+  * Email address and URL updated.
   * License moved into LICENSE file.
   * `Test` detokenised for Git.
 
 License
-=======
+-------
 See LICENSE file.
