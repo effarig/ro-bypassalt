@@ -1,0 +1,72 @@
+;----------------------------------------------------------------------------
+; Register names
+;----------------------------------------------------------------------------
+pc				RN	15
+lr				RN	14
+sp				RN	13
+ws				RN	12
+;----------------------------------------------------------------------------
+; Module workspace
+;----------------------------------------------------------------------------
+				^	0
+ws_alt_keys			#	4	; +ve Inkey codes each byte
+ws_left_alt_keys		#	4       ; +ve Inkey codes
+ws_right_alt_keys		#	4       ; +ve Inkey codes
+ws_alt_state			#	4       ; +ve Inkey codes
+ws_left_alt_state		#	4       ; +ve Inkey codes
+ws_right_alt_state		#	4       ; +ve Inkey codes
+ws_enabled			#	4
+ws_claimed_key_v		#	1
+ws_claimed_byte_v		#	1
+ws_size				#	0	; Must be last
+
+;----------------------------------------------------------------------------
+; SWIS/Constants etc...
+;----------------------------------------------------------------------------
+swi_error_bit			*	1:SHL:17
+
+XOS_Module			*	&1E 	:OR:swi_error_bit
+XOS_Claim			*	&1F	:OR:swi_error_bit
+XOS_Release			*	&20	:OR:swi_error_bit
+XOS_NewLine			*	&03	:OR:swi_error_bit
+XOS_ConvertCardinal4		*	&D8	:OR:swi_error_bit
+XOS_ReadUnsigned		*	&21	:OR:swi_error_bit
+XOS_Write0			*	&02	:OR:swi_error_bit
+XOS_WriteS			*	&01	:OR:swi_error_bit
+XOS_InstallKeyHandler		*	&3E	:OR:swi_error_bit
+XOS_ConvertHex8			*	&D4	:OR:swi_error_bit
+XOS_WriteC			*	&00	:OR:swi_error_bit
+XOS_WriteI			*	&100	:OR:swi_error_bit
+XMessageTrans_ErrorLookup	*	&41506	:OR:swi_error_bit
+
+KeyV				*	&13
+KeyV_KeyPressed			*	2
+KeyV_KeyReleased		*	1
+KeyV_Enable			*	4
+
+ByteV				*	&6
+
+Service_KeyHandler		*	&44
+
+Inkey_Alt			*	2
+Inkey_Left_Alt			*	5
+Inkey_Right_Alt			*	8
+
+Table_Width			*	30
+
+;----------------------------------------------------------------------------
+; Setting/Crearing V for errors. All other flags undefined
+;----------------------------------------------------------------------------
+	MACRO
+	ClrErr
+	cmp	R0,#0
+	MEND
+
+	MACRO
+	SetErr
+	cmp	R0,#1<<31
+	cmnvc	R0,#1<<31
+	MEND
+
+;----------------------------------------------------------------------------
+ 	END
