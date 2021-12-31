@@ -2,15 +2,15 @@ DATE 	= $(Sys$Date) $(Sys$Year)
 ASFLAGS = -PreDefine "BUILDDATE SETS \"$(DATE)\"" -throwback
 AS   	= objasm $(ASFLAGS) -o $@ $*.s
 LINK 	= link -rmf -o $@ $<
-LIBS 	= 
-DEPS 	= 
+LIBS 	=
+DEPS 	=
 OBJS 	= module.o
 MODNAME = BypassAlt
 TGT  	= rm.$(MODNAME)
 ZIPDIST	= bypassalt/zip
 MODDIST = !System.350.Modules.$(MODNAME)
 INSTALL = <System$Dir>.350.Modules.$(MODNAME)
-DIST    = !System !ReadMe
+DIST    = !System !ReadMe LICENSE
 
 all: $(TGT)
 
@@ -19,7 +19,7 @@ run: $(TGT)
 	@-RMKill $(MODNAME)
 	@echo Loading $(MODNAME)...
 	@RMLoad $(TGT)
-	
+
 
 dist: $(TGT)
 	@echo Removing previous distribution archive...
@@ -43,14 +43,14 @@ clean:
 install: $(TGT)
         @echo Install location: $(INSTALL)
 	@echo Removing previously installed version.
-	@-wipe $(INSTALL) F~VR~C 
+	@-wipe $(INSTALL) F~VR~C
 	@echo Installing new version.
 	@copy $(TGT) $(INSTALL) A~CF~L~N~P~QR~S~T~V
 	@count $(INSTALL)
 
 uninstall:
 	@echo Removing previously installed version.
-        @-wipe $(INSTALL) F~VR~C 	
+        @-wipe $(INSTALL) F~VR~C
 
 dirs:
 	@cdir o
@@ -61,7 +61,7 @@ $(OBJS): $(DEPS) dirs
 $(TGT): $(OBJS)
 	@echo Linking $*...
 	@$(LINK) $(OBJS) $(LIBS)
-	
+
 .SUFFIXES: .o .s
 
 .s.o:

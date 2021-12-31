@@ -86,7 +86,7 @@ Changes
   * !ReadMe now markdown.
   * Fix PSR flag names in !ReadMe.
   * Email address and URL updated.
-  * License moved into LICENSE file.
+  * License moved into LICENSE file and included in distribution.
 
 License
 -------
