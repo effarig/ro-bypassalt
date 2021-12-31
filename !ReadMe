@@ -81,12 +81,12 @@ Changes
   * First version.
 
 1.00 (30-Dec-2021):
+  * Migrating to GitHub; no functional difference.
   * Removed tabs from source.
   * !ReadMe now markdown.
   * Fix PSR flag names in !ReadMe.
   * Email address and URL updated.
   * License moved into LICENSE file.
-  * `Test` detokenised for Git.
 
 License
 -------
